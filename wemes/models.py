@@ -77,6 +77,7 @@ class Item(models.Model):
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True)
     description = models.TextField(blank=True)
+    tag_id = models.IntegerField()
 
     def __str__(self):
         return f"{self.drop_off}"
