@@ -10,12 +10,15 @@ class TransactionSerializer(serializers.ModelSerializer):
     parent_lookup_kwargs = {
         'user': 'user',
     }
-    admin_name = serializers.CharField(read_only=True, source="admin.name")
-    customer_name = serializers.CharField(read_only=True, source="customer.name")
+    admin = UserSerializer()
+    customer = UserSerializer()
+
+    # admin_name = serializers.CharField(read_only=True, source="admin.name")
+    # customer_name = serializers.CharField(read_only=True, source="customer.name")
 
     class Meta:
         model = Transaction
-        fields = ['id', 'drop_off', 'admin_name', 'customer_name', "admin", "customer", 'items', "description"]
+        fields = ['id', 'drop_off', "admin", "customer", 'items', "description"]
 
 class ItemSerializer(serializers.ModelSerializer):
     parent_lookup_kwargs = {
