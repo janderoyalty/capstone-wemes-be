@@ -20,18 +20,6 @@ class TransactionSerializer(serializers.ModelSerializer):
         model = Transaction
         fields = ['id', 'drop_off', "admin", "customer", 'items', "description"]
 
-class ItemSerializer(serializers.ModelSerializer):
-    parent_lookup_kwargs = {
-    'item': 'item_h',
-    'user': 'item_h__user',
-    }
-    color = UserSerializer()
-    type = UserSerializer()
-
-    class Meta:
-        model = Item
-        fields = ['id', 'drop_off', 'due_date', 'transaction', 'type', 'color', "is_shoe", "follow_up", "description", "tag_id"]
-
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Color
@@ -41,6 +29,19 @@ class TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Type
         fields = ['id', 'name']
+
+class ItemSerializer(serializers.ModelSerializer):
+    parent_lookup_kwargs = {
+    'item': 'item_h',
+    'user': 'item_h__user',
+    }
+    color = ColorSerializer()
+    type = TypeSerializer()
+
+    class Meta:
+        model = Item
+        fields = ['id', 'drop_off', 'due_date', 'transaction', 'type', 'color', "is_shoe", "follow_up", "description", "tag_id"]
+
 
 # class QRCodeSerializer(serializers.ModelSerializer):
 #     class Meta:
