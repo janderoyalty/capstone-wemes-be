@@ -25,6 +25,9 @@ class ItemSerializer(serializers.ModelSerializer):
     'item': 'item_h',
     'user': 'item_h__user',
     }
+    color = UserSerializer()
+    type = UserSerializer()
+
     class Meta:
         model = Item
         fields = ['id', 'drop_off', 'due_date', 'transaction', 'type', 'color', "is_shoe", "follow_up", "description", "tag_id"]
