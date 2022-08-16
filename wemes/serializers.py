@@ -7,9 +7,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'phone_num', 'last_four', 'email', 'admin', 'is_active', 'transactions']
 
 class TransactionSerializer(serializers.ModelSerializer):
-    parent_lookup_kwargs = {
-        'user': 'user',
-    }
+    # parent_lookup_kwargs = {
+    #     'user': 'user',
+    # }
     admin = UserSerializer()
     customer = UserSerializer()
 
@@ -31,12 +31,12 @@ class TypeSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class ItemSerializer(serializers.ModelSerializer):
-    parent_lookup_kwargs = {
-    'item': 'item_h',
-    'user': 'item_h__user',
-    }
-    color = ColorSerializer()
-    type = TypeSerializer()
+    # parent_lookup_kwargs = {
+    # 'item': 'item_h',
+    # 'user': 'item_h__user',
+    # }
+    # color = ColorSerializer()
+    # type = TypeSerializer()
 
     class Meta:
         model = Item

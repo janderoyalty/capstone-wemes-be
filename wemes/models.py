@@ -30,7 +30,7 @@ class User(models.Model):
 
 class Transaction(models.Model):
     drop_off = models.DateField(blank=True)
-    admin = models.ForeignKey(User, related_name='user_admin', on_delete=models.SET_NULL, null=True)
+    admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="transactions")
     description = models.TextField(blank=True)
 
