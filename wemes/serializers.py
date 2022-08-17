@@ -10,8 +10,8 @@ class TransactionSerializer(serializers.ModelSerializer):
     # parent_lookup_kwargs = {
     #     'user': 'user',
     # }
-    admin = UserSerializer()
-    customer = UserSerializer()
+    # admin = UserSerializer()
+    # customer = UserSerializer()
 
     # admin_name = serializers.CharField(read_only=True, source="admin.name")
     # customer_name = serializers.CharField(read_only=True, source="customer.name")
@@ -35,8 +35,9 @@ class ItemSerializer(serializers.ModelSerializer):
     # 'item': 'item_h',
     # 'user': 'item_h__user',
     # }
-    color = ColorSerializer()
-    type = TypeSerializer()
+    # color = ColorSerializer()
+    # type = TypeSerializer()
+    
 
     class Meta:
         model = Item
