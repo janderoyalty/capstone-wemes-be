@@ -97,10 +97,7 @@ WSGI_APPLICATION = 'wemes.wsgi.application'
 DATABASES = {	
     'default': {	
         'ENGINE': 'django.db.backends.postgresql_psycopg2',	
-        'NAME': 'wemes_db',	
-        # 'USER': '',	
-        # 'PASSWORD': '',	
-        'HOST': '127.0.0.1',	
+        'NAME': 'wemes_db',		
         'PORT': '5432',	
     }	
 }
