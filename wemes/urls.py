@@ -28,7 +28,7 @@ router.register(r'users', views.UserViewSet, basename='users')
 router.register(r'transactions', views.TransactionViewSet, basename='transactions')
 router.register(r'items', views.ItemViewSet, basename='items')
 router.register(r'colors', views.ColorViewSet, basename='colors')
-router.register(r'types', views.TypeViewSet, basename='types')
+router.register(r'categories', views.CategoryViewSet, basename='categories')
 # router.register(r'qrcodes', views.QRCodeViewSet, basename='qrcodes')
 
 # generates:
