@@ -24,9 +24,9 @@ class ColorViewSet(viewsets.ModelViewSet):
     serializer_class =ColorSerializer
     permission_class = [permissions.IsAuthenticated]
 
-class TypeViewSet(viewsets.ModelViewSet):
-    queryset = Type.objects.all()
-    serializer_class = TypeSerializer
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
     permission_class = [permissions.IsAuthenticated]
 
 # class QRCodeViewSet(viewsets.ModelViewSet):

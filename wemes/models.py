@@ -8,7 +8,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_num = models.PositiveBigIntegerField()
-    last_four = models.IntegerField()
+    last_four = models.CharField(max_length=4)
     email = models.CharField(max_length=200, blank=True)
     admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -37,7 +37,7 @@ class Transaction(models.Model):
     def __str__(self):
         return f"{self.admin} helped {self.customer}"
 
-class Type(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -74,7 +74,7 @@ class Item(models.Model):
     follow_up = models.BooleanField(default=False)
     transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, null=True, related_name="items")
     # qr_code = models.ForeignKey(QRCode, on_delete=models.SET_NULL, null=True)
-    type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True)
     description = models.TextField(blank=True)
     tag_id = models.IntegerField()

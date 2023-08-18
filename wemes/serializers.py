@@ -25,9 +25,9 @@ class ColorSerializer(serializers.ModelSerializer):
         model = Color
         fields = ['id', 'name']
 
-class TypeSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Type
+        model = Category
         fields = ['id', 'name']
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -36,12 +36,12 @@ class ItemSerializer(serializers.ModelSerializer):
     # 'user': 'item_h__user',
     # }
     # color = ColorSerializer()
-    # type = TypeSerializer()
+    # category = CategorySerializer()
     
 
     class Meta:
         model = Item
-        fields = ['id', 'drop_off', 'due_date', 'transaction', 'type', 'color', "is_shoe", "follow_up", "description", "tag_id"]
+        fields = ['id', 'drop_off', 'due_date', 'transaction', 'category', 'color', "is_shoe", "follow_up", "description", "tag_id"]
 
 
 # class QRCodeSerializer(serializers.ModelSerializer):
