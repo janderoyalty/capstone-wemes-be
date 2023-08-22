@@ -23,10 +23,17 @@ class TransactionSerializer(serializers.ModelSerializer):
     # admin_name = serializers.CharField(read_only=True, source="admin.name")
     # customer_name = serializers.CharField(read_only=True, source="customer.name")
 
+    items = serializers.SerializerMethodField()  # Use SerializerMethodField
+
     class Meta:
         model = Transaction
         fields = ['id', 'drop_off', "admin", "customer", 'items', "description"]
 
+    def get_items(self, transaction):  # Custom method to get items
+        items = Item.objects.filter(transaction=transaction)
+        item_serializer = ItemSerializer(items, many=True)
+        return item_serializer.data
+    
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Color
