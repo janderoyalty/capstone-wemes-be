@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import dj_database_url	
 import os
+import environ
+
+env = environ.Env()
+
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,7 +40,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'wemes-be.herokuapp.com', 'localhost', '0.0.0.0']
 INSTALLED_APPS = [
     "wemes",
     "rest_framework",
-    'qrcode',
+    # 'qrcode',
     "corsheaders",
 
     'django.contrib.admin',
@@ -43,20 +48,20 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    # 'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'wemes.urls'
@@ -94,18 +99,24 @@ WSGI_APPLICATION = 'wemes.wsgi.application'
 #     }	
 # }	
 
-DATABASES = {	
-    'default': {	
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',	
-        'NAME': 'wemes_db',		
-        'PORT': '5432',	
-    }	
+# DATABASES = {	
+#     'default': {	
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',	
+#         'NAME': 'wemes_db',		
+#         'PORT': '5432',	
+#     }	
+# }
+
+# if "DATABASE_URL" in os.environ:    	
+#     DATABASES['default'] = dj_database_url.config(conn_max_age=500, ssl_require=True)	
+#Render PostgreSQL database
+
+
+DATABASES = {
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
-if "DATABASE_URL" in os.environ:    	
-    DATABASES['default'] = dj_database_url.config(conn_max_age=500, ssl_require=True)	
-
-WHITENOISE_USE_FINDERS = True	
+# WHITENOISE_USE_FINDERS = True	
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -146,10 +157,10 @@ USE_TZ = True
 # turn on later for QR codes
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')	
 STATIC_URL = 'static/'	
-STATICFILES_DIRS = (	
-    os.path.join(BASE_DIR, 'static'),	
-)	
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_DIRS = (	
+#     os.path.join(BASE_DIR, 'static'),	
+# )	
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -162,16 +173,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',
+#     },
+# }
