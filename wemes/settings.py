@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False	
 
-ALLOWED_HOSTS = ['127.0.0.1', 'wemes-be.onrender.com', 'localhost', '0.0.0.0']
+ALLOWED_HOSTS = ['.vercel.app','127.0.0.1', 'wemes-be.onrender.com', 'localhost', '0.0.0.0']
 # ALLOWED_HOSTS = ['*']
 
 
